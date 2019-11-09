@@ -1,0 +1,123 @@
+%%
+%% This is file 'pxchfon-extras.def'.
+%%
+%% Copyright (c) 2019 Takayuki YATO (aka. "ZR")
+%%   GitHub:   https://github.com/zr-tex8r
+%%   Twitter:  @zr_tex8r
+%%
+%% This package is distributed under the MIT License.
+%%
+
+%% file declaration
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesFile{pxchfon-extras.def}[2019/11/09 v0.2]
+
+%--------------------------------------- platform check
+
+%% \pxcz@x@windows
+\IfFileExists{nul:}{%
+  \chardef\pxcz@x@windows\@ne
+}{%else
+  \chardef\pxcz@x@windows\z@
+}
+
+%--------------------------------------- 'non-free' presets
+
+%% 'ms-osx': MS Mincho and MS Gothic, shipped with Office for Mac
+\pxcz@declare@oneweight@preset{ms-osx}
+  {MS-Mincho.ttf}
+  {MS-Gothic.ttf}
+
+%% 'bizud': BIZ UD fonts by Morisawa Inc., bundled with Win 10 October 2018 Update.
+\pxcz@declare@multiweight@preset{bizud}
+  {:0:BIZ-UDMinchoM.ttc}
+  {:0:BIZ-UDMinchoM.ttc}
+  {:0:BIZ-UDMinchoM.ttc}
+  {:0:BIZ-UDGothicR.ttc}
+  {:0:BIZ-UDGothicB.ttc}
+  {:0:BIZ-UDGothicB.ttc}
+  {:0:BIZ-UDGothicR.ttc}
+  {:0:BIZ-UDGothicB.ttc}
+
+%% 'canon' - Canon FontGallery fonts, bundled with CANON LIPS
+\pxcz@declare@multiweight@preset{canon}
+  {:0:FGCCHMW3.TTC}
+  {:0:FGCCHMW3.TTC}
+  {:0:FGCCHMW5.TTC}
+  {:0:FGCCHGW5.TTC}
+  {:0:FGCCHGW7.TTC}
+  {:0:FGCCHGW9.TTC}
+  {:0:FGCCHGW7.TTC}
+  {:0:FGCCARGM.TTC}
+
+%% 'hiragino-highsierra-pron' /
+%% 'hiragino-highsierra': bundled with Mac OS X 10.13 High Sierra
+\pxcz@declare@multiweight@preset{hiragino-highsierra-pron}
+  {:0:HiraginoSerif.ttc}
+  {:0:HiraginoSerif.ttc}
+  {:2:HiraginoSerif.ttc}
+  {:2:HiraginoSans-W3.ttc}
+  {:2:HiraginoSans-W6.ttc}
+  {:3:HiraginoSans-W8.ttc}
+  {:2:HiraginoSans-W6.ttc}
+  {:1:HiraginoSansR-W4.ttc}
+\pxcz@declare@multiweight@preset{hiragino-highsierra}
+  {:1:HiraginoSerif.ttc}
+  {:1:HiraginoSerif.ttc}
+  {:3:HiraginoSerif.ttc}
+  {:3:HiraginoSans-W3.ttc}
+  {:3:HiraginoSans-W6.ttc}
+  {:2:HiraginoSans-W8.ttc}
+  {:3:HiraginoSans-W6.ttc}
+  {:0:HiraginoSansR-W4.ttc}
+
+%% 'toppanbunkyu-sierra': bundled with macOS 10.12 Sierra
+\pxcz@declare@multiweight@preset{toppanbunkyu-sierra}
+  {ToppanBunkyuMincho-Regular.otf}
+  {ToppanBunkyuMincho-Regular.otf}
+  {ToppanBunkyuMidashiMincho-ExtraBold.otf}
+  {:1:ToppanBunkyuGothic.ttc}
+  {:0:ToppanBunkyuGothic.ttc}
+  {ToppanBunkyuMidashiGothic-ExtraBold.otf}
+  {:0:ToppanBunkyuGothic.ttc}
+  {:1:ToppanBunkyuGothic.ttc}
+
+%% 'toppanbunkyu-highsierra': bundled with macOS 10.13 High Sierra
+\pxcz@declare@multiweight@preset{toppanbunkyu-highsierra}
+  {ToppanBunkyuMinchoPr6N-Regular.otf}
+  {ToppanBunkyuMinchoPr6N-Regular.otf}
+  {ToppanBunkyuMidashiMinchoStdN-ExtraBold.otf}
+  {:1:ToppanBunkyuGothicPr6N.ttc}
+  {:0:ToppanBunkyuGothicPr6N.ttc}
+  {ToppanBunkyuMidashiGothicStdN-ExtraBold.otf}
+  {:0:ToppanBunkyuGothicPr6N.ttc}
+  {:1:ToppanBunkyuGothicPr6N.ttc}
+
+%% 'yu-highsierra' bundled with macOS 10.13 High Sierra
+\ifnum\pxcz@x@windows=\z@
+  \pxcz@declare@multiweight@preset{yu-highsierra}
+    {:0:YuMincho.ttc}% YuMin-Medium
+    {:0:YuMincho.ttc}% YuMin-Medium
+    {:1:YuMincho.ttc}% YuMin-Demibold
+    {YuGothic-Medium.otf}
+    {YuGothic-Bold.otf}
+    {YuGothic-Bold.otf}
+    {YuGothic-Medium.otf}
+    {YuGothic-Bold.otf}
+\else % Windows fallback
+  \pxcz@declare@multiweight@preset{yu-highsierra}
+    {yumin.ttf}% YuMincho-Regular
+    {yumin.ttf}% YuMincho-Regular
+    {yumindb.ttf}% YuMincho-Demibold
+    {:0:YuGothM.ttc}% YuGothic-Medium
+    {:0:YuGothB.ttc}% YuGothic-Bold
+    {:0:YuGothB.ttc}% YuGothic-Bold
+    {:0:YuGothM.ttc}% YuGothic-Medium
+    {:0:YuGothB.ttc}% YuGothic-Bold
+\fi
+\g@addto@macro\pxcz@custom@apply@opt@unicode{%
+  \pxcz@do{yu-highsierra}{\pxcz@apply@opt@unicode}}
+
+%--------------------------------------- done
+\endinput
+%% EOF
